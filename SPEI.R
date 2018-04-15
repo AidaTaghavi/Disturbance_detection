@@ -1,0 +1,33 @@
+library(chron)
+library(ggplot2)
+library(splines2)
+library(scales)
+library(SPEI)
+#####################SPEI
+# define here your working directory
+path <- "F:/R_project/"		# working directory
+setwd(path)
+x<-read.csv("speiahvaz.csv")
+str(x)
+th<-thornthwaite(x$tmed,36.39)
+write.csv(th,"pet-noushahr.csv")
+x<-read.csv("speiahvaz.csv")
+spei1<-spei(x$pr-x$Pet,1)
+plot(spei1)
+plot(spei(ts(x$pr-x$Pet,12,start=c(1980,1),end =c(2014,12)),3), main='SPEI-3 with rectangular kernel')
+plot(spei(ts(x$pr-x$Pet,12,start=c(1980,1),end =c(2014,12)),6), main='SPEI-6 with rectangular kernel')
+plot(spei(ts(x$pr-x$Pet,12,start=c(1980,1),end =c(2014,12)),9), main='SPEI-9 with rectangular kernel')
+plot(spei(ts(x$pr-x$Pet,12,start=c(1980,1),end =c(2014,12)),12), main='SPEI-12 with rectangular kernel')
+plot(spei(ts(x$pr-x$Pet,12,start=c(1980,1),end =c(2014,12)),24), main='SPEI-24 with rectangular kernel')
+####################
+plot(spei(ts(x$pr-x$Pet,12,start=c(2000,1),end =c(2010,12)),3), main='SPEI-3 with rectangular kernel')
+plot(spei(ts(x$pr-x$Pet,12,start=c(2000,1),end =c(2010,12)),6), main='SPEI-6 with rectangular kernel')
+plot(spei(ts(x$pr-x$Pet,12,start=c(2000,1),end =c(2010,12)),9), main='SPEI-9 with rectangular kernel')
+plot(spei(ts(x$pr-x$Pet,12,start=c(2000,1),end =c(2010,12)),12), main='SPEI-12 in Arid region')
+plot(spei(ts(x$pr-x$Pet,12,start=c(2000,1),end =c(2010,12)),24), main='SPEI-24 in Arid region')
+
+plot(spei(ts(xb$pr-xb$Pet,12,start=c(2000,1),end =c(2010,12)),3), main='SPEI-3 with rectangular kernel')
+plot(spei(ts(xb$pr-xb$Pet,12,start=c(2000,1),end =c(2010,12)),6), main='SPEI-6 with rectangular kernel')
+plot(spei(ts(xb$pr-xb$Pet,12,start=c(2000,1),end =c(2010,12)),9), main='SPEI-9 with rectangular kernel')
+plot(spei(ts(xb$pr-xb$Pet,12,start=c(2000,1),end =c(2010,12)),12), main='SPEI-12 in Humid region')
+plot(spei(ts(xb$pr-xb$Pet,12,start=c(2000,1),end =c(2010,12)),24), main='SPEI-24 in Humid region')
