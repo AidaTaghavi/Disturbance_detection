@@ -1,1 +1,1 @@
-# Drought_disturbance_detection
+# Drought_Disturbance_Detection
